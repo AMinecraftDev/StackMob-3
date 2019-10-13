@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.spigotmc:tacospigot:1.12.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: club.athenspvp.protocollib:ProtocolLib:4.4.0" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: club.athenspvp.commons-io:commons-io:LATEST">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/jars/commons-io-2.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: club.athenspvp.miniaturepets:MiniaturePetsAPI:LATEST">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/jars/MiniaturePetsAPI.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Maven: club.athenspvp.mythicmobs:MythicMobs:LATEST">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/jars/MythicMobs-4.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: org.bstats:bstats-bukkit:1.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sk89q:worldguard:6.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.sk89q:worldedit:6.1.5" level="project" />
+  </component>
+</module>

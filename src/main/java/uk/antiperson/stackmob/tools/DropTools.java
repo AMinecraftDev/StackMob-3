@@ -1,10 +1,12 @@
 package uk.antiperson.stackmob.tools;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import uk.antiperson.stackmob.StackMob;
+import uk.antiperson.stackmob.events.StackDropLootEvent;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -76,6 +78,12 @@ public class DropTools {
             if(addEnchantment){
                 newStack.addUnsafeEnchantment(Enchantment.DIG_SPEED, 1);
             }
+
+            StackDropLootEvent stackDropLootEvent = new StackDropLootEvent(newStack, dropLocation);
+            Bukkit.getPluginManager().callEvent(stackDropLootEvent);
+
+            if(stackDropLootEvent.isCancelled()) return;
+
             dropLocation.getWorld().dropItemNaturally(dropLocation, newStack);
         }
         if(leftOver > 0){
@@ -84,6 +92,12 @@ public class DropTools {
             if(addEnchantment){
                 newStack.addUnsafeEnchantment(Enchantment.DIG_SPEED, 1);
             }
+
+            StackDropLootEvent stackDropLootEvent = new StackDropLootEvent(newStack, dropLocation);
+            Bukkit.getPluginManager().callEvent(stackDropLootEvent);
+
+            if(stackDropLootEvent.isCancelled()) return;
+
             dropLocation.getWorld().dropItemNaturally(dropLocation, newStack);
         }
     }
