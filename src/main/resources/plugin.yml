@@ -1,11 +1,14 @@
 name: StackMob
 version: 2.2.18
-author: antiPerson/BaconPied
 main: uk.antiperson.stackmob.StackMob
 website: https://www.spigotmc.org/resources/stackmob-legacy.61578/
 softdepend: [MythicMobs, MiniaturePets, ProtocolLib, WorldGuard]
 description: The only mob-stacking plugin that you will ever need.
 load: STARTUP
+authors:
+  - antiPerson
+  - BaconPied
+  - AMinecraftDev
 commands:
     sm:
        description: The main command
