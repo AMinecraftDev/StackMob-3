@@ -3,6 +3,7 @@ package uk.antiperson.stackmob.tools;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import uk.antiperson.stackmob.StackMob;
@@ -42,15 +43,15 @@ public class DropTools {
             }
             if(sm.config.getCustomConfig().getStringList("multiply-drops.drop-one-per")
                     .contains(itemStack.getType().toString())){
-                dropDrops(itemStack, multiplier, dead.getLocation());
+                dropDrops(itemStack, multiplier, dead.getLocation(), dead.getType());
                 continue;
             }
             if(itemInHand != null && itemInHand.getEnchantments().containsKey(Enchantment.LOOT_BONUS_MOBS)) {
                 double enchantmentTimes = 1 + itemInHand.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS) * 0.5;
-                dropDrops(itemStack, (int) Math.round(calculateAmount(multiplier) * enchantmentTimes), dead.getLocation());
+                dropDrops(itemStack, (int) Math.round(calculateAmount(multiplier) * enchantmentTimes), dead.getLocation(), dead.getType());
                 continue;
             }
-            dropDrops(itemStack, calculateAmount(multiplier), dead.getLocation());
+            dropDrops(itemStack, calculateAmount(multiplier), dead.getLocation(), dead.getType());
         }
     }
 
@@ -59,16 +60,16 @@ public class DropTools {
         return (int) Math.round((0.75 + ThreadLocalRandom.current().nextDouble(2)) * multiplier);
     }
 
-    public void dropDrops(ItemStack drop, int amount, Location dropLocation){
-        dropAllDrops(drop, amount, dropLocation, false);
+    public void dropDrops(ItemStack drop, int amount, Location dropLocation, EntityType entityType){
+        dropAllDrops(drop, amount, dropLocation, false, entityType);
     }
 
-    public void dropEggs(ItemStack drop, int amount, Location dropLocation){
-        dropAllDrops(drop, amount, dropLocation, true);
+    public void dropEggs(ItemStack drop, int amount, Location dropLocation, EntityType entityType){
+        dropAllDrops(drop, amount, dropLocation, true, entityType);
     }
 
     // Method to drop the correct amount of drops.
-    private void dropAllDrops(ItemStack drop, int amount, Location dropLocation, boolean addEnchantment){
+    private void dropAllDrops(ItemStack drop, int amount, Location dropLocation, boolean addEnchantment, EntityType entityType){
         double inStacks = (double) amount / (double) drop.getMaxStackSize();
         double floor = Math.floor(inStacks);
         double leftOver = inStacks - floor;
@@ -79,7 +80,7 @@ public class DropTools {
                 newStack.addUnsafeEnchantment(Enchantment.DIG_SPEED, 1);
             }
 
-            StackDropLootEvent stackDropLootEvent = new StackDropLootEvent(newStack, dropLocation);
+            StackDropLootEvent stackDropLootEvent = new StackDropLootEvent(newStack, dropLocation, entityType);
             Bukkit.getPluginManager().callEvent(stackDropLootEvent);
 
             if(stackDropLootEvent.isCancelled()) return;
@@ -93,7 +94,7 @@ public class DropTools {
                 newStack.addUnsafeEnchantment(Enchantment.DIG_SPEED, 1);
             }
 
-            StackDropLootEvent stackDropLootEvent = new StackDropLootEvent(newStack, dropLocation);
+            StackDropLootEvent stackDropLootEvent = new StackDropLootEvent(newStack, dropLocation, entityType);
             Bukkit.getPluginManager().callEvent(stackDropLootEvent);
 
             if(stackDropLootEvent.isCancelled()) return;

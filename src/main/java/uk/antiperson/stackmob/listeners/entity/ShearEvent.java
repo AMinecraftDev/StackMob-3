@@ -41,7 +41,7 @@ public class ShearEvent implements Listener {
             Sheep oldSheep = (Sheep) oldEntity;
             if(sm.config.getCustomConfig().getBoolean("multiply.sheep-wool")){
                 Wool wool = new Wool(oldSheep.getColor());
-                sm.dropTools.dropDrops(wool.toItemStack(1), sm.dropTools.calculateAmount(stackSize), oldEntity.getLocation());
+                sm.dropTools.dropDrops(wool.toItemStack(1), sm.dropTools.calculateAmount(stackSize), oldEntity.getLocation(), oldSheep.getType());
 
                 ItemStack item = event.getPlayer().getItemInHand();
                 item.setDurability((short) (item.getDurability() + stackSize));
@@ -62,7 +62,7 @@ public class ShearEvent implements Listener {
             if(sm.config.getCustomConfig().getBoolean("multiply.mooshroom-mushrooms")){
                 // Duplicate mushrooms
                 ItemStack mushrooms = new ItemStack(Material.RED_MUSHROOM,1);
-                sm.dropTools.dropDrops(mushrooms, (stackSize - 1) * 5, oldEntity.getLocation());
+                sm.dropTools.dropDrops(mushrooms, (stackSize - 1) * 5, oldEntity.getLocation(), oldEntity.getType());
 
                 // Spawn separate normal cow for the rest of the stack.
                 Entity cow = oldEntity.getWorld().spawnEntity(oldEntity.getLocation(), EntityType.COW);
